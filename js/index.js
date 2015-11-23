@@ -76,7 +76,7 @@ function createParticles() {
   for (var i = 0; i < QUANTITY; i++) {
 
     var particle = {
-      size: 1,
+      size: 3,
       position: {
         x: mouseX,
         y: mouseY
