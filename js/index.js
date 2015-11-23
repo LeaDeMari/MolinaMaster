@@ -5,7 +5,7 @@ var RADIUS = 15;
 var COLORS = ["Aquamarine", "CadetBlue", "DarkSeaGreen", "MediumTurquoise", "PaleGreen", "Teal"];
 
 
-var RADIUS_SCALE = 1;
+var RADIUS_SCALE = 2;
 var RADIUS_SCALE_MIN = .5;
 var RADIUS_SCALE_MAX = 3;
 
