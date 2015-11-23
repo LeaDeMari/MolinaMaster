@@ -90,7 +90,7 @@ function createParticles() {
         y: mouseY
       },
       speed: 0.005 + Math.random() * 0.001,
-      targetSize: 6 * Math.random(),
+      targetSize: 8 * Math.random(),
       fillColor: COLORS[Math.floor(Math.random() * COLORS.length)],
       orbit: RADIUS + (RADIUS * Math.random()*50)
     };
