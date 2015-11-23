@@ -67,7 +67,7 @@ function runTextLeftToRight() {
   context.restore();
   if (step == steps)
 	  step = 0;
-    var t = setTimeout('runTextLeftToRight()', delay);
+    var t = setTimeout('runTextLeftToRight()', 20);
 }
 
 function createParticles() {
