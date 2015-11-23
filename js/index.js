@@ -1,7 +1,7 @@
 var SCREEN_WIDTH = window.innerWidth;
 var SCREEN_HEIGHT = window.innerHeight;
 
-var RADIUS = 15;
+var RADIUS = 10;
 var COLORS = ["Aquamarine", "CadetBlue", "DarkSeaGreen", "MediumTurquoise", "PaleGreen", "Teal"];
 
 
@@ -76,7 +76,7 @@ function createParticles() {
   for (var i = 0; i < QUANTITY; i++) {
 
     var particle = {
-      size: 3,
+      size: 1,
       position: {
         x: mouseX,
         y: mouseY
@@ -90,7 +90,7 @@ function createParticles() {
         y: mouseY
       },
       speed: 0.005 + Math.random() * 0.001,
-      targetSize: 8 * Math.random(),
+      targetSize: 2 * Math.random(),
       fillColor: COLORS[Math.floor(Math.random() * COLORS.length)],
       orbit: RADIUS + (RADIUS * Math.random()*50)
     };
@@ -165,7 +165,7 @@ function loop() {
    }
 
   if (mouseIsDown) {
-    RADIUS_SCALE += (RADIUS_SCALE_MAX / 500);
+    RADIUS_SCALE += (RADIUS_SCALE_MAX / 200);
   } else {
     RADIUS_SCALE -= (RADIUS_SCALE - RADIUS_SCALE_MIN) * (0.5);
   }
