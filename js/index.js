@@ -9,7 +9,7 @@ var RADIUS_SCALE = 2;
 var RADIUS_SCALE_MIN = .5;
 var RADIUS_SCALE_MAX = 3;
 
-var QUANTITY = 35;
+var QUANTITY = 25;
 
 var timer;
 var timerTwo;
