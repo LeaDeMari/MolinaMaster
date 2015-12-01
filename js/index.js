@@ -9,7 +9,10 @@ var RADIUS_SCALE = 2;
 var RADIUS_SCALE_MIN = .5;
 var RADIUS_SCALE_MAX = 3;
 
-var QUANTITY = 850;
+var QUANTITY = 5;
+
+var timer;
+var timerTwo;
 
 var canvas;
 var context;
@@ -55,6 +58,9 @@ function init() {
     windowResizeHandler();
 
     setInterval(loop, 1000 / 60);
+	
+	timer = setInterval(resizeCanvas, 20);
+	timerTwo = setInterval (newShape, 200);
   }
 }
 
@@ -67,7 +73,7 @@ function runTextLeftToRight() {
   context.restore();
   if (step == steps)
 	  step = 0;
-    var t = setTimeout('runTextLeftToRight()', 20);
+    var t = setTimeout('runTextLeftToRight()', 50);
 }
 
 function createParticles() {
@@ -98,6 +104,9 @@ function createParticles() {
     particles.push(particle);
   }
 }
+
+
+
 
 function keyDownHandler(e) {
         if(e.keyCode == 65) {
@@ -196,8 +205,8 @@ function loop() {
     particle.position.y = particle.shift.y + Math.sin(i + particle.offset.y) * (particle.orbit * RADIUS_SCALE);
 
     //bounds
-    particle.position.x = Math.max(Math.min(particle.position.x, SCREEN_WIDTH), 0);
-    particle.position.y = Math.max(Math.min(particle.position.y, SCREEN_HEIGHT), 0);
+    particle.position.x = Math.max(Math.min(particle.position.x));
+    particle.position.y = Math.max(Math.min(particle.position.y));
 
     particle.size += (particle.targetSize - particle.size) * 0.05;
 
@@ -215,8 +224,77 @@ function loop() {
     context.arc(particle.position.x, particle.position.y, particle.size / 2, 0, Math.PI * 2, true);
     context.fill();
 
+
+	
+	if (Math.round(particle.size) == Math.round(particle.targetSize)) {
+      particle.targetSize = 2;
+    }
+
+    context.beginPath();
+    context.strokeStyle = particle.fillColor;
+    context.lineWidth = particle.size;
+    context.moveTo(lp.x /2, lp.y /2);
+    context.lineTo(particle.position.x /2, particle.position.y /2);
+    context.arc(particle.position.x /2, particle.position.y /2, 10, 0, Math.PI , true);
+      context.closePath();
+      context.fillStyle = 'aquamarine';
+      context.fill();
+	
+
+    context.beginPath();
+    context.strokeStyle = particle.fillColor;
+    context.lineWidth = particle.size;
+    context.moveTo(lp.x*2, lp.y*2);
+    context.lineTo(particle.position.x*2, particle.position.y*2);
+    context.rect(particle.position.x*2, particle.position.y*2, 10, 10, 15, 10);
+      context.closePath();
+	  context.lineWidth = 1;
+      context.fillStyle = 'teal';
+      context.fill();
+
+	  
+      context.beginPath();
+	  context.fillStyle = "PaleGreen";
+	  context.StrokeStyle = particle.fillColor;
+      context.lineWidth = particle.size;
+      context.moveTo(lp.x*3, lp.y*3);
+      context.lineTo(lp.x * 3 + 14,  lp.y * 3 + 5);
+      context.lineTo(lp.x * 3 - 20,  lp.y * 3 - 5);
+      //context.lineTo(lp.x * 3 + 20,  lp.y * 3 + 2);
+	  context.lineTo(lp.x * 3 - 20,  lp.y * 3 - 10);
+      //context.lineJoin = 'miter';
+	  context.closePath();
+      context.fill();
+
+	  
+      context.beginPath();
+	  context.fillStyle = "PaleGreen";
+	  context.StrokeStyle = particle.fillColor;
+      context.lineWidth = particle.size;
+      context.moveTo(lp.x*3, lp.y*3);
+      context.lineTo(lp.x * 3 + 10,  lp.y * 3 + 8);
+      context.lineTo(lp.x * 3 - 20,  lp.y * 3 - 20);
+      context.lineTo(lp.x * 3 - 50,  lp.y * 3 - 2);
+	  context.lineTo(lp.x * 3 + 40,  lp.y * 3 + 10);
+      //context.lineJoin = 'miter';
+	  context.closePath();
+      context.fill();
+		
+	
+	  context.beginPath();
+      context.fillStyle = "DarkSeaGreen";
+	  context.StrokeStyle = particle.fillColor;
+      context.lineWidth = particle.size;
+      context.moveTo(lp.x*2.5, lp.y*2.5);
+      context.bezierCurveTo(lp.x*2.5 +20, lp.y*2.5 +2, lp.x*2.5 +15, lp.y*2.5 +15, lp.x*2.5 +30, lp.y*2.5 -12);
+      context.bezierCurveTo(lp.x*2.5 -20, lp.y*2.5 -2, lp.x*2.5 -15, lp.y*2.5 +2, lp.x*2.5 +17, lp.y*2.5 +8);
+      context.closePath();
+	  context.fill();
+
+	  
   }
 }
+
 
 
 window.onload = init;
